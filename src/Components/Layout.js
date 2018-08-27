@@ -21,28 +21,30 @@ class Layout extends Component {
             sidebarOpen : !this.state.sidebarOpen
         })
     }
-
+    
+    // these three methods are just shells, but I think they improve readability in .render
     getTop = () => {
-        if(this.props.top) {
-            return this.props.top; 
-        } else {
-            return <Typography variant="display1">Default top content</Typography>
-        }
+        return this.returnPropsOrDefaultMessage("top"); 
     }
 
     getMenu = () => {
-        if (this.props.menu) {
-            return this.props.menu;
-        } else {
-            return <Typography variant="display1">Default top content</Typography>
-        }
+        return this.returnPropsOrDefaultMessage("menu"); 
     }
 
     getMain = () => {
-        if (this.props.main) {
-            return this.props.main;
+        return this.returnPropsOrDefaultMessage("main"); 
+    }
+
+    /**
+     * Returns the JSX-element in specified prop name if it is present.
+     * If not, it returns a default text
+     * @param name name of prop
+     */
+    returnPropsOrDefaultMessage = (name) => {
+        if(this.props[name]) {
+            return this.props[name]; 
         } else {
-            return <Typography variant="display1">Default main content</Typography>
+            return <Typography variant="display1">Default {name} content</Typography>
         }
     }
 
